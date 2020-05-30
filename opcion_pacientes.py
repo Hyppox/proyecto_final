@@ -28,7 +28,7 @@ class BDPaciente:
         self.modificar()
 
         self.cuaderno1.grid(column=0, row=0, padx=10, pady=10)
-        self.ventana_pacientes.geometry("+450+40")
+        self.ventana_pacientes.geometry("+350+40")
   
         self.ventana_pacientes.resizable(False,False)
         self.ventana_pacientes.mainloop() 

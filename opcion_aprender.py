@@ -9,7 +9,7 @@ class Aprender:
         self.ventana_aprender = tk.Toplevel()
 
         self.ventana_aprender.title("Agregar nuevo ejercicio")
-        self.ventana_aprender.geometry("+10+653")
+        self.ventana_aprender.geometry("+850+40")
         self.pestanas = ttk.Notebook(self.ventana_aprender)
 
 

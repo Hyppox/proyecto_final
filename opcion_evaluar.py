@@ -19,12 +19,11 @@ class Evaluar:
     def __init__(self):
         self.ingrese_CI = tk.Toplevel()
         self.ingrese_CI.configure(bg = "#ffffff")
-        self.ingrese_CI.geometry("+100+218")
         self.label=tk.Label(self.ingrese_CI,
                 text="Ingrese CI del paciente:",
                 bg='#ffffff')      
        
-        self.ingrese_CI.geometry("+450+463")
+        self.ingrese_CI.geometry("+350+463")
         
         tamano_texto = font.Font(size=12 )
 
