@@ -3,8 +3,8 @@ from tkinter import scrolledtext as st
 from tkinter import ttk
 from tkinter import messagebox as mb
 # pylint: disable=E1101
-
-
+import keyboard
+import time
 class Errores:
     def __init__(self):
         
@@ -31,6 +31,10 @@ class Errores:
             command= self.agregar_inconvenientes)        
         boton.grid(column=1, row=2, padx=4, pady=4)
         
+        if keyboard.is_pressed('enter'):
+            self.agregar_inconvenientes
+            time.sleep(0.1)
+            self.recargar_lista
         boton1=tk.Button(self.incon,
             text="Recargar \n lista",
             command= self.recargar_lista)        

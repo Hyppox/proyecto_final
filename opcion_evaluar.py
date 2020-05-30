@@ -13,7 +13,7 @@ import sqlite3
 from PIL import ImageTk,Image 
 import sensores 
 # pylint: disable=E1101
-
+ 
 
 class Evaluar:
     def __init__(self):

@@ -7,3 +7,5 @@ desde: 25/05/2020
 4: No se limpian los campos de resultado al hacer una bÃºsqueda negativa
 5: Buscar manera de editar atributos de los widgets en la ventana desde la ventana
 6: Al abrir la ventana en vpython el resto de la aplicación se bloquea
+7: Falta desarrollar el algoritmo para el aprendizaje
+8: linea de prueba
