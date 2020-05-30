@@ -27,7 +27,7 @@ class Sensores:
         #mano = box (pos = vector(0,0,0),length=5, height=0.5, width=2, color = color.purple, opacity = .8, axis = vector(0,0,0))
 
 
-        arduino = serial.Serial('com6', 115200)
+        arduino = serial.Serial('com3', 115200)
         LineArdu = arduino.readline()
         LineArdu = LineArdu.decode('utf-8')
         time.sleep(2)
@@ -101,7 +101,7 @@ class Sensores:
                     break
                 
                 while (arduino.inWaiting()==0):
-                    print('Cargando...')
+                    #print('Cargando...')
                     
                     if keyboard.is_pressed('esc'):
                         cerrar = 1
