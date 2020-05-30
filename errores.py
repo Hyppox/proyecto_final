@@ -11,7 +11,7 @@ class Errores:
         
         self.incon = tk.Toplevel()  
         self.incon.title("Registro...")  
-        self.listainconvenientes = st.ScrolledText(self.incon, width=100, height=50)
+        self.listainconvenientes = st.ScrolledText(self.incon, width=100, height=25)
         self.listainconvenientes.grid(column=0,row=1, padx=10, pady=10)
         self.incon.geometry("+10+10")
 

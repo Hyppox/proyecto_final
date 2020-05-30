@@ -6,3 +6,4 @@ desde: 25/05/2020
 3: Se arregló el problema mencionado en linea 1
 4: No se limpian los campos de resultado al hacer una búsqueda negativa
 5: Buscar manera de editar atributos de los widgets en la ventana desde la ventana
+6: Al abrir la ventana en vpython el resto de la aplicaci�n se bloquea

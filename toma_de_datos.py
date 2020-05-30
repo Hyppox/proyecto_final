@@ -3,7 +3,7 @@ import time
 from serial import Serial
 
 # set up the serial line
-ser = serial.Serial('COM4', 9600)
+ser = serial.Serial('COM3', 9600)
 time.sleep(2)
 # Read and record the data
 data =[]                       # empty list to store the data
