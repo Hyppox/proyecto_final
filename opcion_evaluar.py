@@ -11,6 +11,7 @@ import crear_carpeta as ccbd
 import crear_basededatos as cbd
 import sqlite3
 from PIL import ImageTk,Image 
+import sensores 
 # pylint: disable=E1101
 
 
@@ -121,7 +122,8 @@ class Evaluar:
         self.imagen_ejercicios = tk.Label(self.ventana_evaluar, text ="Aqui va la imagen")
         self.imagen_ejercicios.grid(row=1,column=0)
         
-        self.boton_evaluar = tk.Button(self.ventana_evaluar, text="Aceptar")
+        self.boton_evaluar = tk.Button(self.ventana_evaluar, text="Aceptar",
+        command =sensores.Sensores )
         self.boton_evaluar.grid(row=3,column=0)
         
         self.vacio = tk.Label(self.ventana_evaluar,

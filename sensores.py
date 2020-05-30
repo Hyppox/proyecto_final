@@ -7,7 +7,7 @@ class Sensores:
     def __init__(self):
         super().__init__()
         self.sensores()
-    def sensores():
+    def sensores(self):
 
         scene.range=5
         toRad=2*np.pi/360
