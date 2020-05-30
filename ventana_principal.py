@@ -17,7 +17,7 @@ class Principal:
         if MsgBox == 'yes':
             self.root.destroy()
         else:
-            tk.messagebox.showinfo('Regresar','Regresará a la aplicación')
+            tk.messagebox.shpowinfo('Regresar','Regresará a la aplicación')
       
     def principal(self):
                 
