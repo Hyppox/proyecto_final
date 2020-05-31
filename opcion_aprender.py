@@ -19,7 +19,6 @@ class Aprender:
         self.eliminar_ejercicio()
 
         self.pestanas.grid(column=0, row=0)
-        self.ventana_aprender.mainloop()
 
 
     def agregar_ejercicio(self):
@@ -28,35 +27,39 @@ class Aprender:
 
         self.pestanas.add(self.pagina1, text="Agregar")
 
-        #self.pagina1=ttk.LabelFrame(self.pagina1, text="Ejercicio")
-        #self.pagina1.grid(column=0, row=0, padx=5   , pady=10)
-        
-        self.label1=ttk.Label(self.pagina1, text="ID del ejercicio:")
-        self.label1.grid(column=0, row=0, padx=4, pady=4)
-        self.ID=tk.StringVar()
-        self.entrada_ID=ttk.Entry(self.pagina1, textvariable=self.ID)
-        self.entrada_ID.grid(column=1, row=0, padx=4, pady=4)
+        self.label1=ttk.Label(self.pagina1, text="Nombre del ejercicio:")
+        self.label1.grid(column=0, row=0, padx=5, pady=5)
 
+
+        self.entrada_ID=tk.Entry(self.pagina1, width=20)
+        self.entrada_ID.grid(column=1, row=0, padx=5, pady=5)
+        self.entrada_ID.focus()
         self.boton_aceptar = tk.Button(self.pagina1,
         text="Aceptar",
-        command = print("Aceptar"))
+        command = self.nombre_ejercicio)
         self.boton_aceptar.grid(row=1,
         column=0)
 
-        self.boton_configuracion = tk.Button(self.pagina1,text="Configuración",command = Grabar_dato)
-        self.boton_configuracion.grid(row=2,column=0)
+        self.boton_configuracion = tk.Button(self.pagina1,
+        text="Configuración",
+        command = Grabar_dato)
+        self.boton_configuracion.grid(row=2,
+        column=0)
 
-        self.etiqueta_nombre = tk.Label(text = "Nombre")
-        self.etiqueta_nombre.grid(row = 3, column = 2)
+        self.etiqueta_nombre = tk.Label(self.ventana_aprender,text="")
+    
+    
+    def nombre_ejercicio(self):
+        nombre = self.entrada_ID.get()
+        self.etiqueta_nombre.config(text=nombre)
+        self.entrada_ID.delete(0,tk.END)
+ 
 
     def eliminar_ejercicio(self):
 
         self.pagina2 = ttk.Frame(self.pestanas)
         self.pestanas.add(self.pagina2, text="Eliminar")
 
-        #self.pagina2=ttk.LabelFrame(self.pagina2, text="Ejercicios aprendidos")
-        #self.pagina2.grid(column=0, row=0, padx=5   , pady=10)
-        
         self.label1=ttk.Label(self.pagina2, text="ID del ejercicio:")
         self.label1.grid(column=0, row=0, padx=4, pady=4)
         self.ID=tk.StringVar()
@@ -68,6 +71,7 @@ class Aprender:
         self.scrolledtext1=st.ScrolledText(self.pagina2, width=30, height=5)
         self.scrolledtext1.grid(column=0,row=1, padx=10, pady=10)
 
+
 class Grabar_dato:
 
     def __init__(self):
@@ -78,7 +82,7 @@ class Grabar_dato:
                 text="Tiempo por ejercicio(s): ",
                 bg='#ffffff')      
        
-        self.ventana_grabar.geometry("+850+285")
+        self.ventana_grabar.geometry("+850+265")
         
         tamano_texto = font.Font(size=11 )
 

@@ -139,7 +139,7 @@ class Evaluar:
 
         self.nuevo = tk.Toplevel()
         self.nuevo.configure(bg = "#ffffff")
-        self.nuevo.geometry("+480+800")
+        self.nuevo.geometry("+480+500")
         self.nuevo.title("Nuevo paciente")
         self.tamano_texto = font.Font(size=12 )
 
