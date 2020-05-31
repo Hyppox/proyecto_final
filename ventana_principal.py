@@ -9,7 +9,7 @@ class Principal:
     def __init__(self):
         self.principal()
         super().__init__()       
-
+        
 
     def cerrar(self):
         
@@ -17,7 +17,7 @@ class Principal:
         if MsgBox == 'yes':
             self.root.destroy()
         else:
-            tk.messagebox.shpowinfo('Regresar','Regresará a la aplicación')
+            tk.messagebox.showinfo('Regresar','Regresará a la aplicación')
       
     def principal(self):
                 
