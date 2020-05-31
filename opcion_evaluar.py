@@ -72,11 +72,14 @@ class Evaluar:
         self.respuesta=ct.Consultar.consulta(datos)
         
         if len(self.respuesta)>0 and datos[0]!='':
-
+            try:
+                self.nuevo.destroy()
+            except:
+                pass
             lineas = ["Usuario registrado",self.respuesta[0][1]]
             mb.showinfo('Continuar...', "\n".join(lineas))
+            
         else:
-
             mb.showinfo("Algo fue mal...","No existe usuario registrado con dicho número de CI \n \n Revise que los datos estén bien: \n  -Puede usar la lista de pacientes en ventana 'Pacientes'\n   -Puede agregar el paciente")
         
         if len(self.respuesta)>0 and datos[0]!='':
@@ -139,9 +142,9 @@ class Evaluar:
 
         self.nuevo = tk.Toplevel()
         self.nuevo.configure(bg = "#ffffff")
-        self.nuevo.geometry("+480+500")
+        self.nuevo.geometry("+350+580")
         self.nuevo.title("Nuevo paciente")
-        self.tamano_texto = font.Font(size=12 )
+        self.tamano_texto = font.Font(size=11 )
 
         self.labelframe1=tk.LabelFrame(self.nuevo,
          text="Paciente:" )        

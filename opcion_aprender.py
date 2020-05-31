@@ -20,7 +20,7 @@ class Aprender:
 
         self.pestanas.grid(column=0, row=0)
 
-
+        self.ventana_aprender.resizable(False,False)
     def agregar_ejercicio(self):
 
         self.pagina1 = ttk.Frame(self.pestanas)
@@ -30,8 +30,8 @@ class Aprender:
         self.label1=ttk.Label(self.pagina1, text="Nombre del ejercicio:")
         self.label1.grid(column=0, row=0, padx=5, pady=5)
 
-
-        self.entrada_ID=tk.Entry(self.pagina1, width=20)
+        self.nomej=tk.StringVar()
+        self.entrada_ID=tk.Entry(self.pagina1, width=20,textvariable= self.nomej)
         self.entrada_ID.grid(column=1, row=0, padx=5, pady=5)
         self.entrada_ID.focus()
         self.boton_aceptar = tk.Button(self.pagina1,
@@ -41,16 +41,21 @@ class Aprender:
         column=0)
 
         self.boton_configuracion = tk.Button(self.pagina1,
-        text="Configuración",
+        text="Comenzar aprendizaje",
         command = Grabar_dato)
         self.boton_configuracion.grid(row=2,
         column=0)
 
-        self.etiqueta_nombre = tk.Label(self.ventana_aprender,text="")
+        self.ejercicio = tk.Label(self.pagina1,text="Ejercicio actual:")
+        self.ejercicio.grid(row =1, column = 3)
     
+
+        self.etiqueta_nombre = tk.Label(self.pagina1,text="NOMBRE DEL EJERCICIO")
+        self.etiqueta_nombre.grid(row =2, column = 3)
     
     def nombre_ejercicio(self):
-        nombre = self.entrada_ID.get()
+        nombre = self.nomej.get()
+        print(nombre)
         self.etiqueta_nombre.config(text=nombre)
         self.entrada_ID.delete(0,tk.END)
  
