@@ -5,7 +5,8 @@ Aquí desarrollo un sistema para recogida de datos de sensores inerciales y su a
 
 Desarrollado con Python3
 librerias utilizadas
-\n
+
+
 Vpython
 tkinter
 numpy
