@@ -3,6 +3,8 @@ from tkinter import scrolledtext as st
 from tkinter import ttk
 from tkinter import messagebox as mb
 # pylint: disable=E1101
+import keyboard
+import time
 
 class Errores:
     def __init__(self):
