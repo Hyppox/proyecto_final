@@ -8,10 +8,17 @@ librerias utilizadas
 
 
 Vpython
+
 tkinter
+
 numpy
+
 keyboard
+
 serial 
+
 time
+
 os
+
 sqlite3
