@@ -1,4 +1,4 @@
-AquÃ­ listo los inconvenientes o comentarios que voy teniendo durante el desarrollo del programa
+Aquí listo los inconvenientes o comentarios que voy teniendo durante el desarrollo del programa
 desde: 25/05/2020
 
 1: Error para mostrar el campo "Sexo" al modificar el paciente. File "/home/jenner/Documentos/PROGRAMA FINAL/opcion_pacientes.py", line 297, in consultar_mod  self.sexomod.set(respuesta[0][3]) AttributeError: 'Entry' object has no attribute 'set'
@@ -9,3 +9,4 @@ desde: 25/05/2020
 6: Al abrir la ventana en vpython el resto de la aplicación se bloquea
 7: Falta desarrollar el algoritmo para el aprendizaje
 8: linea de prueba
+9: Es necesario agregar comprobación para el nombre al aprender un ejercicio nuevo

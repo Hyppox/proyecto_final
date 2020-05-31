@@ -18,6 +18,7 @@ import sensores
 class Evaluar:
     def __init__(self):
         self.ingrese_CI = tk.Toplevel()
+
         self.ingrese_CI.configure(bg = "#ffffff")
         self.label=tk.Label(self.ingrese_CI,
                 text="Ingrese CI del paciente:",
@@ -141,6 +142,7 @@ class Evaluar:
     def nuevopaciente(self):
 
         self.nuevo = tk.Toplevel()
+        self.nuevo.grab_set()
         self.nuevo.configure(bg = "#ffffff")
         self.nuevo.geometry("+350+580")
         self.nuevo.title("Nuevo paciente")
@@ -194,7 +196,11 @@ class Evaluar:
           command= self.agregar)
         self.boton3.grid(column=1, row=4, padx=4, pady=4)
         self.boton3['font'] = self.tamano_texto
+
+
         self.nuevo.resizable(False,False)
+
+
     def agregar(self):
         datos=(self.nombrecarga.get(),
          self.cargarpaciente.get(),
@@ -208,6 +214,8 @@ class Evaluar:
         self.entryCI.delete(0, 'end')
         self.entryedad.delete(0, 'end')
         self.entrysexopaciente.delete(0, 'end')
+
+        self.nuevo.destroy()
     def alta(self, datos):
         cone=self.abrir()
         cursor=cone.cursor()
