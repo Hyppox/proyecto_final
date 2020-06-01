@@ -176,7 +176,8 @@ class Grabar_dato:
     def comenzar(self):
         #mb.showinfo("Instrucciones...","Amarillo: espere \nVerde: Haga el ejercicio \nRojo: Fin")
         now = time.time() 
-        limite = ("after#"+self.entrada_rep.get())
+        repeticiones = str(int(self.entrada_rep.get())*2)
+        limite = "after#"+ repeticiones
         t = int(self.tiempo_ejercicio.get())*1000
         if self.num == 0:
             self.num=1
@@ -189,6 +190,7 @@ class Grabar_dato:
             ahora = "ESPERE"
             self.etiqueta_nombre.config(text = ahora,bg="yellow")
             ID = self.etiqueta_nombre.after(1000, self.comenzar)
+
         print(type(ID))
         print(ID)
         print(time.time()-now)
@@ -209,3 +211,4 @@ class Grabar_dato:
 
         mb.showinfo("Confirmacón","Revise antes de comenzar a grabar: \nRepeticiones: "+self.repeticiones+" \nTiempo por ejercicio: "+self.tiempo+" segundo/s")
         print(self.tiempo+"-"+self.repeticiones)
+        time.sleep(2)
