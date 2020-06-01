@@ -10,3 +10,4 @@ desde: 25/05/2020
 7: Falta desarrollar el algoritmo para el aprendizaje
 8: linea de prueba
 9: Es necesario agregar comprobación para el nombre al aprender un ejercicio nuevo
+10: Corregir: Se debe reiniciar el programa para grabar un nuevo ejercicio

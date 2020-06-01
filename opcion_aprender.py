@@ -3,7 +3,8 @@ from tkinter import ttk
 from tkinter import scrolledtext as st
 import tkinter.font as font 
 from tkinter import messagebox as mb
-import time
+import time,sqlite3
+import crear_bd_ejercicios as cbde
 
 class Aprender:
 
@@ -67,10 +68,30 @@ class Aprender:
 
         self.etiqueta_nombre = tk.Label(self.pagina1,text="NOMBRE DEL EJERCICIO")
         self.etiqueta_nombre.grid(row =2, column = 3)
+    def abrir(self):
+        try:
+            cbde
+            conexion=sqlite3.connect("bases_de_datos/ejercicios.db")
+            return conexion
+        except:
 
+            conexion=sqlite3.connect("bases_de_datos/ejercicios.db")
+            return(conexion)
+            pass
+
+    def alta(self, datos):
+        cone=self.abrir()
+        cursor=cone.cursor()
+        sql="insert into ejercicios(nombre) values (?)"
+        self.creartablapaciente(datos[1])
+        cursor.execute(sql, datos)
+        cone.commit()
+        cone.close()
+    
     def nombre_ejercicio(self):
+        cbde
+
         nombre = self.nomej.get()
-        print(nombre)
         self.etiqueta_nombre.config(text=nombre)
         self.entrada_ID.delete(0,tk.END)
  
@@ -91,13 +112,17 @@ class Aprender:
         self.scrolledtext1=st.ScrolledText(self.pagina2, width=30, height=5)
         self.scrolledtext1.grid(column=0,row=1, padx=10, pady=10)
 
-
+    def devolver_nombre(self):
+        nombre =self.nomej.get()
+        print(nombre)
+        return nombre
 class Grabar_dato:
 
     def __init__(self):
         self.col = 0
-
         self.ventana_grabar = tk.Toplevel()
+        self.titulo = Aprender.devolver_nombre
+        self.ventana_grabar.title(self.titulo)
         self.ventana_grabar.configure(bg = "#ffffff")
         self.label=tk.Label(self.ventana_grabar,
                 text="Tiempo por ejercicio(s): ",
@@ -124,8 +149,8 @@ class Grabar_dato:
         pady=5)
 
         self.n_rep=tk.StringVar()
-        self.entrada_num=ttk.Entry(self.ventana_grabar, textvariable=self.n_rep   )
-        self.entrada_num.grid(column=1, row=2)
+        self.entrada_rep=ttk.Entry(self.ventana_grabar, textvariable=self.n_rep   )
+        self.entrada_rep.grid(column=1, row=2)
         
 
   
@@ -141,32 +166,40 @@ class Grabar_dato:
         pady=10)  
 
 
-        self.vacio2 = tk.Label(self.ventana_grabar,
-                 text= "\t",
-                bg='#ffffff')
-        self.vacio2.grid(row=7,column=3)
-
         self.etiqueta_nombre = tk.Label(self.ventana_grabar,text = "......")
         self.etiqueta_nombre.grid(row =4, column = 0)
 
 
         self.ventana_grabar.resizable(False,False) 
+        self.num =0
 
     def comenzar(self):
         #mb.showinfo("Instrucciones...","Amarillo: espere \nVerde: Haga el ejercicio \nRojo: Fin")
+        now = time.time() 
+        limite = ("after#"+self.entrada_rep.get())
+        t = int(self.tiempo_ejercicio.get())*1000
+        if self.num == 0:
+            self.num=1
+            ahora = "Realice \n el movimiento"
+            self.etiqueta_nombre.config(text = ahora,bg="green")
+            ID =self.etiqueta_nombre.after(t, self.comenzar)
         
-        if self.col == 0:
-            self.col = 1
         else:
-            self.col = 1
-
-        self.etiqueta_nombre.config(text = self.col)
-        self.etiqueta_nombre.after(1000, self.comenzar)
-
+            self.num=0
+            ahora = "ESPERE"
+            self.etiqueta_nombre.config(text = ahora,bg="yellow")
+            ID = self.etiqueta_nombre.after(1000, self.comenzar)
+        print(type(ID))
+        print(ID)
+        print(time.time()-now)
+        if limite == ID:
+            self.etiqueta_nombre.after_cancel(ID)
+            mb.showinfo("Fin","Grabación finalizada")
+            self.ventana_grabar.destroy()
     def aceptar(self):
         tamano_texto = font.Font(size=12)
         self.tiempo = self.tiempo_ejercicio.get()
-        self.repeticiones = self.entrada_num.get()
+        self.repeticiones = self.entrada_rep.get()
 
         self.boton2=tk.Button(self.ventana_grabar, text="Comenzar a grabar", command=self.comenzar,
                 bg='#ffffff',
