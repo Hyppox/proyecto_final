@@ -3,10 +3,12 @@ from tkinter import ttk
 from tkinter import scrolledtext as st
 import tkinter.font as font 
 from tkinter import messagebox as mb
+import time
 
 class Aprender:
 
     def __init__(self):
+
         tamano_texto = font.Font(size=12,
          weight = "bold" )
 
@@ -93,6 +95,7 @@ class Aprender:
 class Grabar_dato:
 
     def __init__(self):
+        self.col = 0
 
         self.ventana_grabar = tk.Toplevel()
         self.ventana_grabar.configure(bg = "#ffffff")
@@ -143,17 +146,33 @@ class Grabar_dato:
                 bg='#ffffff')
         self.vacio2.grid(row=7,column=3)
 
+        self.etiqueta_nombre = tk.Label(self.ventana_grabar,text = "......")
+        self.etiqueta_nombre.grid(row =4, column = 0)
+
 
         self.ventana_grabar.resizable(False,False) 
+
+    def comenzar(self):
+        #mb.showinfo("Instrucciones...","Amarillo: espere \nVerde: Haga el ejercicio \nRojo: Fin")
+        
+        if self.col == 0:
+            self.col = 1
+        else:
+            self.col = 1
+
+        self.etiqueta_nombre.config(text = self.col)
+        self.etiqueta_nombre.after(1000, self.comenzar)
+
     def aceptar(self):
         tamano_texto = font.Font(size=12)
         self.tiempo = self.tiempo_ejercicio.get()
         self.repeticiones = self.entrada_num.get()
 
-        self.boton2=tk.Button(self.ventana_grabar, text="Comenzar a grabar", command=print("otro boton"),
+        self.boton2=tk.Button(self.ventana_grabar, text="Comenzar a grabar", command=self.comenzar,
                 bg='#ffffff',
                 fg='#000000')
         self.boton2['font'] = tamano_texto
         self.boton2.grid(column=1, row=6,columnspan = 2)
-            
+
+        mb.showinfo("Confirmacón","Revise antes de comenzar a grabar: \nRepeticiones: "+self.repeticiones+" \nTiempo por ejercicio: "+self.tiempo+" segundo/s")
         print(self.tiempo+"-"+self.repeticiones)
