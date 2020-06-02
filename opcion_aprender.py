@@ -58,7 +58,7 @@ class Aprender:
 
         self.boton_configuracion = tk.Button(self.pagina1,
         text="Comenzar aprendizaje",
-        command = Grabar_dato )
+        command = self.grabar_datos )
         self.boton_configuracion.grid(row=2,
         column=0)
 
@@ -116,46 +116,40 @@ class Aprender:
         nombre =self.nomej.get()
         print(nombre)
         return nombre
-class Grabar_dato:
 
-    def __init__(self):
-        self.col = 0
-        self.ventana_grabar = tk.Toplevel()
-        self.titulo = Aprender.devolver_nombre
-        self.ventana_grabar.title(self.titulo)
-        self.ventana_grabar.configure(bg = "#ffffff")
-        self.label=tk.Label(self.ventana_grabar,
+    def grabar_datos(self):
+        self.label=tk.Label(self.ventana_aprender,
                 text="Tiempo por ejercicio(s): ",
                 bg='#ffffff')      
        
-        self.ventana_grabar.geometry("+850+265")
+        #self.ventana_aprender.geometry("+850+265")
         
         tamano_texto = font.Font(size=11 )
 
         self.label['font'] = tamano_texto
         self.label.grid(column=0, row=1)
         
-        self.label2=tk.Label(self.ventana_grabar,
+        self.label2=tk.Label(self.ventana_aprender,
                 text="Número de repeticiones: ",
                 bg='#ffffff')      
        
         self.label2['font'] = tamano_texto
-        self.label2.grid(column=0, row=2)
+        self.label2.grid(column=0, row=4)
       
         self.t_ejercicio=tk.StringVar()
-        self.tiempo_ejercicio=ttk.Entry(self.ventana_grabar, textvariable=self.t_ejercicio    )
+        self.tiempo_ejercicio=ttk.Entry(self.ventana_aprender, textvariable=self.t_ejercicio    )
         self.tiempo_ejercicio.grid(column=1, row=1,
         padx=5,
         pady=5)
 
         self.n_rep=tk.StringVar()
-        self.entrada_rep=ttk.Entry(self.ventana_grabar, textvariable=self.n_rep   )
+        self.entrada_rep=ttk.Entry(self.ventana_aprender, textvariable=self.n_rep   )
         self.entrada_rep.grid(column=1, row=2)
         
 
   
 
-        self.boton1=tk.Button(self.ventana_grabar,
+        self.boton1=tk.Button(self.ventana_aprender,
          text="Aceptar",
          command=self.aceptar,
                 bg='#ffffff',
@@ -166,11 +160,11 @@ class Grabar_dato:
         pady=10)  
 
 
-        self.etiqueta_nombre = tk.Label(self.ventana_grabar,text = "......")
+        self.etiqueta_nombre = tk.Label(self.ventana_aprender,text = "......")
         self.etiqueta_nombre.grid(row =4, column = 0)
 
 
-        self.ventana_grabar.resizable(False,False) 
+        self.ventana_aprender.resizable(False,False) 
         self.num =0
 
     def comenzar(self):
@@ -197,13 +191,13 @@ class Grabar_dato:
         if limite == ID:
             self.etiqueta_nombre.after_cancel(ID)
             mb.showinfo("Fin","Grabación finalizada")
-            self.ventana_grabar.destroy()
+            self.ventana_aprender.destroy()
     def aceptar(self):
         tamano_texto = font.Font(size=12)
         self.tiempo = self.tiempo_ejercicio.get()
         self.repeticiones = self.entrada_rep.get()
 
-        self.boton2=tk.Button(self.ventana_grabar, text="Comenzar a grabar", command=self.comenzar,
+        self.boton2=tk.Button(self.ventana_aprender, text="Comenzar a grabar", command=self.comenzar,
                 bg='#ffffff',
                 fg='#000000')
         self.boton2['font'] = tamano_texto
