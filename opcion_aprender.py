@@ -93,7 +93,7 @@ class Aprender:
 
         nombre = self.nomej.get()
         self.etiqueta_nombre.config(text=nombre)
-        self.entrada_ID.delete(0,tk.END)
+        self.etiqueta_nombre.delete(0,tk.END)
  
 
     def eliminar_ejercicio(self):
@@ -118,7 +118,7 @@ class Aprender:
         return nombre
 
     def grabar_datos(self):
-        self.label=tk.Label(self.ventana_aprender,
+        self.label=tk.Label(self.pagina1,
                 text="Tiempo por ejercicio(s): ",
                 bg='#ffffff')      
        
@@ -127,41 +127,41 @@ class Aprender:
         tamano_texto = font.Font(size=11 )
 
         self.label['font'] = tamano_texto
-        self.label.grid(column=0, row=1)
+        self.label.grid(column=0, row=4)
         
-        self.label2=tk.Label(self.ventana_aprender,
+        self.label2=tk.Label(self.pagina1,
                 text="Número de repeticiones: ",
                 bg='#ffffff')      
        
         self.label2['font'] = tamano_texto
-        self.label2.grid(column=0, row=4)
+        self.label2.grid(column=0, row=5)
       
         self.t_ejercicio=tk.StringVar()
-        self.tiempo_ejercicio=ttk.Entry(self.ventana_aprender, textvariable=self.t_ejercicio    )
-        self.tiempo_ejercicio.grid(column=1, row=1,
+        self.tiempo_ejercicio=ttk.Entry(self.pagina1, textvariable=self.t_ejercicio    )
+        self.tiempo_ejercicio.grid(column=1, row=4,
         padx=5,
         pady=5)
 
         self.n_rep=tk.StringVar()
-        self.entrada_rep=ttk.Entry(self.ventana_aprender, textvariable=self.n_rep   )
-        self.entrada_rep.grid(column=1, row=2)
+        self.entrada_rep=ttk.Entry(self.pagina1, textvariable=self.n_rep   )
+        self.entrada_rep.grid(column=1, row=5)
         
 
   
 
-        self.boton1=tk.Button(self.ventana_aprender,
+        self.boton1=tk.Button(self.pagina1,
          text="Aceptar",
          command=self.aceptar,
                 bg='#ffffff',
                 fg='#000000')
         self.boton1['font'] = tamano_texto
-        self.boton1.grid(column=1, row=4,columnspan = 2,
+        self.boton1.grid(column=1, row=6,columnspan = 2,
         padx=10,
         pady=10)  
 
 
-        self.etiqueta_nombre = tk.Label(self.ventana_aprender,text = "......")
-        self.etiqueta_nombre.grid(row =4, column = 0)
+        #self.etiqueta_nombre = tk.Label(self.pagina1,text = "......")
+        #self.etiqueta_nombre.grid(row =4, column = 0)
 
 
         self.ventana_aprender.resizable(False,False) 
