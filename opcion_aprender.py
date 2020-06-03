@@ -173,17 +173,19 @@ class Aprender:
         repeticiones = str(int(self.entrada_rep.get())*2)
         limite = "after#"+ repeticiones
         t = int(self.tiempo_ejercicio.get())*1000
+        self.etiqueta_grabar = tk.Label(self.ventana_aprender, text="Comienza")
+        self.etiqueta_grabar.grid(row=1,column=1)
         if self.num == 0:
             self.num=1
             ahora = "Realice \n el movimiento"
-            self.etiqueta_nombre.config(text = ahora,bg="green")
-            ID =self.etiqueta_nombre.after(t, self.comenzar)
+            self.etiqueta_grabar.config(text = ahora,bg="green")
+            ID =self.etiqueta_grabar.after(t, self.comenzar)
         
         else:
             self.num=0
             ahora = "ESPERE"
-            self.etiqueta_nombre.config(text = ahora,bg="yellow")
-            ID = self.etiqueta_nombre.after(1000, self.comenzar)
+            self.etiqueta_grabar.config(text = ahora,bg="yellow")
+            ID = self.etiqueta_grabar.after(1000, self.comenzar)
 
         print(type(ID))
         print(ID)
@@ -193,16 +195,17 @@ class Aprender:
             mb.showinfo("Fin","Grabación finalizada")
             self.ventana_aprender.destroy()
     def aceptar(self):
+
         tamano_texto = font.Font(size=12)
         self.tiempo = self.tiempo_ejercicio.get()
         self.repeticiones = self.entrada_rep.get()
 
-        self.boton2=tk.Button(self.ventana_aprender, text="Comenzar a grabar", command=self.comenzar,
+        self.boton2=tk.Button(self.ventana_aprender, text="Comenzar a grabar",
+         command=self.comenzar,
                 bg='#ffffff',
                 fg='#000000')
         self.boton2['font'] = tamano_texto
-        self.boton2.grid(column=1, row=6,columnspan = 2)
+        self.boton2.grid(column=1, row=0,columnspan = 2)
 
         mb.showinfo("Confirmacón","Revise antes de comenzar a grabar: \nRepeticiones: "+self.repeticiones+" \nTiempo por ejercicio: "+self.tiempo+" segundo/s")
         print(self.tiempo+"-"+self.repeticiones)
-        time.sleep(2)
