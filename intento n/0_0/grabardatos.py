@@ -1,10 +1,11 @@
 import tkinter
+import serial
 
 class GuardarDatos:
     def __init__(self):
         self.iniciarconexion
     def iniciarconexion(self):
-        self.arduino = serial.Serial('com6', 115200)
+        self.arduino = serial.Serial('com3', 115200)
         self.LineArdu = self.arduino.readline()
         self.LineArdu = self.LineArdu.decode('utf-8')
         time.sleep(2)
@@ -14,4 +15,4 @@ class GuardarDatos:
 
 while True:
     GuardarDatos.imprimirdatos
-arduino.close() 
+

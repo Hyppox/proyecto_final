@@ -122,6 +122,7 @@ class Evaluar:
         self.indicaciones = tk.Label(self.ventana_evaluar, text ="Repita n veces los siguientes ejercicios: ")
         self.indicaciones.grid(row=0,column=0)
 
+        self.imagen = tk.Label(self.ventana_evaluar)
         self.imagen_ejercicios = tk.Label(self.ventana_evaluar, text ="Aqui va la imagen")
         self.imagen_ejercicios.grid(row=1,column=0)
         
@@ -142,7 +143,7 @@ class Evaluar:
     def nuevopaciente(self):
 
         self.nuevo = tk.Toplevel()
-        self.nuevo.grab_set()
+        #self.nuevo.grab_set()
         self.nuevo.configure(bg = "#ffffff")
         self.nuevo.geometry("+350+580")
         self.nuevo.title("Nuevo paciente")
