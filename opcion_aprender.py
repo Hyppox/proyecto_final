@@ -5,7 +5,8 @@ import tkinter.font as font
 from tkinter import messagebox as mb
 import time,sqlite3
 import crear_bd_ejercicios as cbde
-
+import toma_de_datos as tdd
+import serial
 class Aprender:
 
     def __init__(self):
@@ -93,7 +94,7 @@ class Aprender:
 
         nombre = self.nomej.get()
         self.etiqueta_nombre.config(text=nombre)
-        self.etiqueta_nombre.delete(0,tk.END)
+        self.entrada_ID.delete(0,tk.END)
  
 
     def eliminar_ejercicio(self):
@@ -137,6 +138,7 @@ class Aprender:
         self.label2.grid(column=0, row=5)
       
         self.t_ejercicio=tk.StringVar()
+        self.contador =self.t_ejercicio.get()
         self.tiempo_ejercicio=ttk.Entry(self.pagina1, textvariable=self.t_ejercicio    )
         self.tiempo_ejercicio.grid(column=1, row=4,
         padx=5,
@@ -146,7 +148,7 @@ class Aprender:
         self.entrada_rep=ttk.Entry(self.pagina1, textvariable=self.n_rep   )
         self.entrada_rep.grid(column=1, row=5)
         
-
+        print(type(self.n_rep.get()))
   
 
         self.boton1=tk.Button(self.pagina1,
@@ -169,6 +171,8 @@ class Aprender:
 
     def comenzar(self):
         #mb.showinfo("Instrucciones...","Amarillo: espere \nVerde: Haga el ejercicio \nRojo: Fin")
+        datos = tdd.aprendizaje(int(self.tiempo_ejercicio.get()),int(self.entrada_rep.get()))
+        print(datos)
         now = time.time() 
         repeticiones = str(int(self.entrada_rep.get())*2)
         limite = "after#"+ repeticiones
@@ -185,15 +189,26 @@ class Aprender:
             self.num=0
             ahora = "ESPERE"
             self.etiqueta_grabar.config(text = ahora,bg="yellow")
-            ID = self.etiqueta_grabar.after(1000, self.comenzar)
+            self.etiqueta_grabar.config()
+            ID = self.etiqueta_grabar.after(2000, self.comenzar)
 
-        print(type(ID))
-        print(ID)
-        print(time.time()-now)
         if limite == ID:
             self.etiqueta_nombre.after_cancel(ID)
             mb.showinfo("Fin","Grabación finalizada")
             self.ventana_aprender.destroy()
+    
+    def cuenta_atras(self):
+            # change text in label     
+
+        self.etiqueta_grabar['text'] = self.contador
+        if self.contador > 0:
+        # call countdown again after 1000ms (1s)
+            self.ventana_aprender.after(1000, self.cuenta_atras, int(self.contador)-1)
+
+
+
+
+
     def aceptar(self):
 
         tamano_texto = font.Font(size=12)
@@ -201,7 +216,7 @@ class Aprender:
         self.repeticiones = self.entrada_rep.get()
 
         self.boton2=tk.Button(self.ventana_aprender, text="Comenzar a grabar",
-         command=self.comenzar,
+         command=self.aprendizaje,
                 bg='#ffffff',
                 fg='#000000')
         self.boton2['font'] = tamano_texto
@@ -209,3 +224,72 @@ class Aprender:
 
         mb.showinfo("Confirmacón","Revise antes de comenzar a grabar: \nRepeticiones: "+self.repeticiones+" \nTiempo por ejercicio: "+self.tiempo+" segundo/s")
         print(self.tiempo+"-"+self.repeticiones)
+
+    def aprendizaje(self):  
+        tamano_texto = font.Font(size=12,
+        weight = "bold" )
+
+        # set up the serial line
+        ser = serial.Serial('COM3', 115200)
+        time.sleep(2)
+        # Read and record the data
+        #t = int(input("Ingrese tiempo de toma de datos: "))
+        #n = int(input("ingrese el número de repeticiones: "))
+        data =[]                       # empty list to store the data
+
+        contador = 0
+
+        while contador < int(self.n_rep.get()):
+            inicio = time.time()
+            ahora = time.time()    
+            print("comienza!")
+            while (ahora-inicio) < int(self.t_ejercicio.get()):
+
+                b = ser.readline()         # read a byte string
+                string_n = b.decode()  # decode byte string into Unicode  
+                string = string_n.rstrip() # remove \n and \r
+
+                #print(string)
+                data.append(string)           # add to the end of data list
+                time.sleep(0.1)            # wait (sleep) 0.1 seconds
+                ahora = time.time()
+            marcador = "----------" # -*10
+            data.append(marcador)
+            contador +=1
+            fin = time.time()
+            print("La vuelta ",contador," duró: ",round(fin-inicio,2), "s")
+            print("descanso 1.5s")
+            time.sleep(1.5)
+        for line in data:
+                
+            print(line)
+        ser.close()
+        self.ver_datos = tk.Button(self.ventana_aprender,
+        text = "Ver datos",
+        command = self.ver_datos)
+        self.ver_datos.grid(row=2, column=2)
+        self.ver_datos['font'] = tamano_texto
+        self.datos_grabados= data
+
+
+    def ver_datos(self):
+        self.ventana_ver_datos =tk.Toplevel()
+        self.ventana_ver_datos.title("Datos grabados")
+        self.registrar_datos
+       
+        self.scrolledtext1=st.ScrolledText(self.ventana_ver_datos, width=50, height=15)
+        self.scrolledtext1.grid(column=0,row=1, padx=10, pady=10)
+
+        self.scrolledtext1.delete("1.0", tk.END) 
+        self.scrolledtext1.insert(tk.END,  "EJERCICIO \n")    
+        self.scrolledtext1.insert(tk.END, self.nomej.get()+ "\n")     
+        for i in range(len(self.datos_grabados)):
+            self.scrolledtext1.insert(tk.END, self.datos_grabados[i]+ "\n")
+        
+    def registrar_datos(self):
+        print(self.datos_grabados)
+        print("jeje")
+        registro = open('registro_de_ejercicios.txt','a')
+        for linea in self.datos_grabados:
+            registro.write(linea+'\n')
+        registro.close()    

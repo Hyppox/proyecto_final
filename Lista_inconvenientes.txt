@@ -11,3 +11,4 @@ desde: 25/05/2020
 8: linea de prueba
 9: Es necesario agregar comprobación para el nombre al aprender un ejercicio nuevo
 10: Corregir: Se debe reiniciar el programa para grabar un nuevo ejercicio
+11: Falta incluir la cuenta atrás en la ventana de aprendizaje

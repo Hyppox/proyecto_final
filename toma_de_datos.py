@@ -25,6 +25,7 @@ def aprendizaje(t,n):
             data.append(string)           # add to the end of data list
             time.sleep(0.1)            # wait (sleep) 0.1 seconds
             ahora = time.time()
+            
         marcador = "----------" # -*10
         data.append(marcador)
         contador +=1
@@ -34,6 +35,3 @@ def aprendizaje(t,n):
             
         print(line)
     ser.close()
-    # show the data
-
-aprendizaje(2,5)
