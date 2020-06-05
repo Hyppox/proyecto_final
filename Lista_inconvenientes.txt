@@ -12,3 +12,4 @@ desde: 25/05/2020
 9: Es necesario agregar comprobación para el nombre al aprender un ejercicio nuevo
 10: Corregir: Se debe reiniciar el programa para grabar un nuevo ejercicio
 11: Falta incluir la cuenta atrás en la ventana de aprendizaje
+12: En la ventana "agregar nuevo ejercicio" el botón "ver datos" se inhabilita al grabar nuevos datos y usar un nuevo nombre, pero si registra los datos guardados al pulsar "guardar datos"
