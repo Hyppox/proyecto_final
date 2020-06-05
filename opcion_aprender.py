@@ -172,7 +172,7 @@ class Aprender:
     def comenzar(self):
         #mb.showinfo("Instrucciones...","Amarillo: espere \nVerde: Haga el ejercicio \nRojo: Fin")
         datos = tdd.aprendizaje(int(self.tiempo_ejercicio.get()),int(self.entrada_rep.get()))
-        print(datos)
+        #print(datos)
         now = time.time() 
         repeticiones = str(int(self.entrada_rep.get())*2)
         limite = "after#"+ repeticiones
@@ -226,52 +226,59 @@ class Aprender:
         print(self.tiempo+"-"+self.repeticiones)
 
     def aprendizaje(self):  
-        tamano_texto = font.Font(size=12,
-        weight = "bold" )
+        try:
+            tamano_texto = font.Font(size=12,
+            weight = "bold" )
 
-        # set up the serial line
-        ser = serial.Serial('COM3', 115200)
-        time.sleep(2)
-        # Read and record the data
-        #t = int(input("Ingrese tiempo de toma de datos: "))
-        #n = int(input("ingrese el número de repeticiones: "))
-        data =[]                       # empty list to store the data
+            # set up the serial line
+            ser = serial.Serial('COM3', 115200)
+            time.sleep(2)
+            # Read and record the data
+            #t = int(input("Ingrese tiempo de toma de datos: "))
+            #n = int(input("ingrese el número de repeticiones: "))
+            data =[]                       # empty list to store the data
 
-        contador = 0
+            contador = 0
 
-        while contador < int(self.n_rep.get()):
-            inicio = time.time()
-            ahora = time.time()    
-            print("comienza!")
-            while (ahora-inicio) < int(self.t_ejercicio.get()):
+            while contador < int(self.n_rep.get()):
+                inicio = time.time()
+                ahora = time.time()    
+                print("comienza!")
+                while (ahora-inicio) < int(self.t_ejercicio.get()):
 
-                b = ser.readline()         # read a byte string
-                string_n = b.decode()  # decode byte string into Unicode  
-                string = string_n.rstrip() # remove \n and \r
+                    b = ser.readline()         # read a byte string
+                    string_n = b.decode()  # decode byte string into Unicode  
+                    string = string_n.rstrip() # remove \n and \r
 
-                #print(string)
-                data.append(string)           # add to the end of data list
-                time.sleep(0.1)            # wait (sleep) 0.1 seconds
-                ahora = time.time()
-            marcador = "----------" # -*10
-            data.append(marcador)
-            contador +=1
-            fin = time.time()
-            print("La vuelta ",contador," duró: ",round(fin-inicio,2), "s")
-            print("descanso 1.5s")
-            time.sleep(1.5)
-        for line in data:
-                
-            print(line)
-        ser.close()
-        self.ver_datos = tk.Button(self.ventana_aprender,
-        text = "Ver datos",
-        command = self.ver_datos)
-        self.ver_datos.grid(row=2, column=2)
-        self.ver_datos['font'] = tamano_texto
-        self.datos_grabados= data
+                    #print(string)
+                    data.append(string)           # add to the end of data list
+                    time.sleep(0.1)            # wait (sleep) 0.1 seconds
+                    ahora = time.time()
+                marcador = "----------" # -*10
+                data.append(marcador)
+                contador +=1
+                fin = time.time()
+                print("La vuelta ",contador," duró: ",round(fin-inicio,2), "s")
+                print("descanso 1.5s")
+                time.sleep(1.5)
+            for line in data:
+                    
+                print(line)
+            ser.close()
+            self.ver_datos = tk.Button(self.ventana_aprender,
+            text = "Ver datos",
+            command = self.ver_datos)
+            self.ver_datos.grid(row=2, column=2)
+            self.ver_datos['font'] = tamano_texto
+            self.datos_grabados= data
 
-
+            self.guardar_datos = tk.Button(self.ventana_aprender,
+            text = "Guardar datos",
+            command = self.registrar_datos)
+            self.guardar_datos.grid(row=3, column=2)
+            self.guardar_datos['font'] = tamano_texto
+        except:
+            mb.showinfo("ERROR...","No se detecta dispositivo \n de entrada")    
     def ver_datos(self):
         self.ventana_ver_datos =tk.Toplevel()
         self.ventana_ver_datos.title("Datos grabados")
@@ -287,9 +294,11 @@ class Aprender:
             self.scrolledtext1.insert(tk.END, self.datos_grabados[i]+ "\n")
         
     def registrar_datos(self):
-        print(self.datos_grabados)
-        print("jeje")
+        self.ver_datos.grid_forget()
+        self.guardar_datos.grid_forget()
+        self.boton2.grid_forget()
         registro = open('registro_de_ejercicios.txt','a')
+        registro.write(self.nomej.get()+"\n")
         for linea in self.datos_grabados:
             registro.write(linea+'\n')
         registro.close()    
