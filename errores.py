@@ -58,7 +58,7 @@ class Errores:
         nlineas= str(sum(1 for line in open('Lista_inconvenientes.txt'))-2)
         lista = open('Lista_inconvenientes.txt','a')
         nueva_linea = self.texto.get()
-        lista.write( nlineas+" -- "+fecha+ " : "+nueva_linea +'\n')
+        lista.write( nlineas+" -- " + fecha + " : "+nueva_linea + ' \n' + "\n")
         lista.close()
         self.inconveniente.delete(0, 'end')
         mb.showinfo("ok","Agregado!")
