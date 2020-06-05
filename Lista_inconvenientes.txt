@@ -1,4 +1,4 @@
-Aquí listo los inconvenientes o comentarios que voy teniendo durante el desarrollo del programa
+Aquï¿½ listo los inconvenientes o comentarios que voy teniendo durante el desarrollo del programa
 desde: 25/05/2020
 
 1: Error para mostrar el campo "Sexo" al modificar el paciente. File "/home/jenner/Documentos/PROGRAMA FINAL/opcion_pacientes.py", line 297, in consultar_mod  self.sexomod.set(respuesta[0][3]) AttributeError: 'Entry' object has no attribute 'set'
@@ -6,10 +6,11 @@ desde: 25/05/2020
 3: Se arreglÃ³ el problema mencionado en linea 1
 4: No se limpian los campos de resultado al hacer una bÃºsqueda negativa
 5: Buscar manera de editar atributos de los widgets en la ventana desde la ventana
-6: Al abrir la ventana en vpython el resto de la aplicación se bloquea
+6: Al abrir la ventana en vpython el resto de la aplicaciï¿½n se bloquea
 7: Falta desarrollar el algoritmo para el aprendizaje
 8: linea de prueba
-9: Es necesario agregar comprobación para el nombre al aprender un ejercicio nuevo
+9: Es necesario agregar comprobaciï¿½n para el nombre al aprender un ejercicio nuevo
 10: Corregir: Se debe reiniciar el programa para grabar un nuevo ejercicio
-11: Falta incluir la cuenta atrás en la ventana de aprendizaje
-12: En la ventana "agregar nuevo ejercicio" el botón "ver datos" se inhabilita al grabar nuevos datos y usar un nuevo nombre, pero si registra los datos guardados al pulsar "guardar datos"
+11: Falta incluir la cuenta atrï¿½s en la ventana de aprendizaje
+12: En la ventana "agregar nuevo ejercicio" el botï¿½n "ver datos" se inhabilita al grabar nuevos datos y usar un nuevo nombre, pero si registra los datos guardados al pulsar "guardar datos"
+13: Falta crear el listado de ejercicios e implementar el botï¿½n de borrado14 -- 05/06/2020 13:47:59 : Desde aquï¿½ comienza a guardar hora y fecha del registro

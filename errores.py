@@ -5,6 +5,8 @@ from tkinter import messagebox as mb
 # pylint: disable=E1101
 import keyboard
 import time
+from datetime import datetime
+
 
 class Errores:
     def __init__(self):
@@ -50,10 +52,13 @@ class Errores:
             self.listainconvenientes.insert(tk.END, linea)
 
     def agregar_inconvenientes(self):
+        ahora = datetime.now()
+        fecha = ahora.strftime("%d/%m/%Y %H:%M:%S")
+
         nlineas= str(sum(1 for line in open('Lista_inconvenientes.txt'))-2)
         lista = open('Lista_inconvenientes.txt','a')
         nueva_linea = self.texto.get()
-        lista.write(nlineas+": "+nueva_linea +'\n')
+        lista.write( nlineas+" -- "+fecha+ " : "+nueva_linea +'\n')
         lista.close()
         self.inconveniente.delete(0, 'end')
         mb.showinfo("ok","Agregado!")
