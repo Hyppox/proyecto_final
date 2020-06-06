@@ -251,7 +251,7 @@ class Aprender:
                     string = string_n.rstrip() # remove \n and \r
 
                     #print(string)
-                    data.append(string)           # add to the end of data list
+                    data.append(time.time(),string)           # add to the end of data list
                     time.sleep(0.1)            # wait (sleep) 0.1 seconds
                     ahora = time.time()
                 #marcador = "----------" # -*10

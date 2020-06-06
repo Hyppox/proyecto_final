@@ -16,7 +16,15 @@ data = pd.DataFrame(data = processedList,columns = columns)
 print(data.head())
 
 print(data.shape)
-print(data.info())
+
 print(data.isnull().sum())
 print(data["ejercicio"].value_counts())
+
+data["x1"] = data["x1"].astype("float")
+data["y1"] = data["y1"].astype("float")
+data["z1"] = data["z1"].astype("float")
+data["x2"] = data["x2"].astype("float")
+data["y2"] = data["y2"].astype("float")
+print(data.info())
+Fs = 10
 #print(processedList)
