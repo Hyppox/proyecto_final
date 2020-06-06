@@ -239,8 +239,8 @@ class Aprender:
             data =[]                       # empty list to store the data
 
             contador = 0
-
-            while contador < int(self.n_rep.get()):
+            num = int(self.n_rep.get())
+            while contador < num:
                 inicio = time.time()
                 ahora = time.time()    
                 print("comienza!")
@@ -254,8 +254,8 @@ class Aprender:
                     data.append(string)           # add to the end of data list
                     time.sleep(0.1)            # wait (sleep) 0.1 seconds
                     ahora = time.time()
-                marcador = "----------" # -*10
-                data.append(marcador)
+                #marcador = "----------" # -*10
+                #data.append(marcador)
                 contador +=1
                 fin = time.time()
                 print("La vuelta ",contador," duró: ",round(fin-inicio,2), "s")
@@ -300,5 +300,5 @@ class Aprender:
         registro = open('registro_de_ejercicios.txt','a')
         registro.write(self.nomej.get()+"\n")
         for linea in self.datos_grabados:
-            registro.write(linea+'\n')
+            registro.write(self.nomej.get()+","+linea+'\n')
         registro.close()    

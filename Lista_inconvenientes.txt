@@ -17,3 +17,5 @@ desde: 25/05/2020
 14 -- 05/06/2020 13:47:59 : Desde aqui comienza a guardar hora y fecha del registro
 15 -- 05/06/2020 13:51:45 : prueba 
 
+17 -- 05/06/2020 18:19:06 : Es necesario añadir un script para poder cambiar el codigo arduino desde python, para poder recoger el raw data de los sensores y poder graficar bien en Vpython 
+
