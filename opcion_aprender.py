@@ -7,6 +7,8 @@ import time,sqlite3
 import crear_bd_ejercicios as cbde
 import toma_de_datos as tdd
 import serial
+import time
+
 class Aprender:
 
     def __init__(self):
@@ -232,7 +234,7 @@ class Aprender:
 
             # set up the serial line
             ser = serial.Serial('COM3', 115200)
-            time.sleep(2)
+            time.sleep(1)
             # Read and record the data
             #t = int(input("Ingrese tiempo de toma de datos: "))
             #n = int(input("ingrese el número de repeticiones: "))
@@ -302,3 +304,4 @@ class Aprender:
         for linea in self.datos_grabados:
             registro.write(self.nomej.get()+","+linea+'\n')
         registro.close()    
+
