@@ -7,7 +7,6 @@ import time,sqlite3
 import crear_bd_ejercicios as cbde
 import toma_de_datos as tdd
 import serial
-import time
 
 class Aprender:
 
@@ -60,7 +59,7 @@ class Aprender:
         pady = 10)
 
         self.boton_configuracion = tk.Button(self.pagina1,
-        text="Comenzar aprendizaje",
+        text="Continuar \n ...",
         command = self.grabar_datos )
         self.boton_configuracion.grid(row=2,
         column=0)
@@ -90,14 +89,21 @@ class Aprender:
         cursor.execute(sql, datos)
         cone.commit()
         cone.close()
-    
+    def boton_confirmar(self):
+        
+        self.boton_configuracion = tk.Button(self.pagina1,
+        text="Confirmar \n Tiempo y repeticiones",
+        command = self.grabar_datos )
+        self.boton_configuracion.grid(row=2,
+        column=0)
+
     def nombre_ejercicio(self):
         cbde
 
         nombre = self.nomej.get()
         self.etiqueta_nombre.config(text=nombre)
         self.entrada_ID.delete(0,tk.END)
- 
+
 
     def eliminar_ejercicio(self):
 
@@ -242,7 +248,7 @@ class Aprender:
 
             contador = 0
             num = int(self.n_rep.get())
-            while contador < num:
+            while contador < int(self.n_rep.get()):
                 inicio = time.time()
                 ahora = time.time()    
                 print("comienza!")
@@ -253,7 +259,7 @@ class Aprender:
                     string = string_n.rstrip() # remove \n and \r
 
                     #print(string)
-                    data.append(time.time(),string)           # add to the end of data list
+                    data.append(str(time.time())+","+string)           # add to the end of data list
                     time.sleep(0.1)            # wait (sleep) 0.1 seconds
                     ahora = time.time()
                 #marcador = "----------" # -*10
