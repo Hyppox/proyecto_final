@@ -60,11 +60,13 @@ for ejercicio in ejercicios:
     plot_ejercicio(ejercicio,data_for_plot)    
 """
 df = data.drop(["tiempo"],axis = 1).copy()
-print(df.head())
 
 print(df ["ejercicio"].value_counts())
 
 etiqueta = LabelEncoder()
 df ["etiqueta"] = etiqueta.fit_transform(df["ejercicio"])
+print(df.head())
 
 etiqueta.classes
+x = df[["x1","y1","z1","x2","y2"]]
+y = df["etiqueta"]
