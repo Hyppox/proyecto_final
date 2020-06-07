@@ -1,5 +1,7 @@
 import tkinter as tk
 import tkinter.font as font
+
+#llama de un archivo opcion_****.py cada ventana
 import opcion_pacientes
 import opcion_evaluar  
 import opcion_aprender as oa

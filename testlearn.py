@@ -52,11 +52,11 @@ def plot_axis(ax,x,y,title):
     ax.set_ylim([min(y) - np.std(y),max(y)+np.std(y)])
     ax.set_xlim([min(x),max(x)])
     ax.grid(True)     
-
+"""
 for ejercicio in ejercicios:
     data_for_plot = data[(data["ejercicio"] == ejercicio)][:Fs*10]
     plot_ejercicio(ejercicio,data_for_plot)    
-
+"""
 df = data.drop(["tiempo"],axis = 1).copy()
 print(df.head())
 
@@ -65,3 +65,4 @@ print(df ["ejercicio"].value_counts())
 etiqueta = LabelEncoder()
 df ["etiqueta"] = etiqueta.fit_transform(df["ejercicio"])
 
+etiqueta.classes
