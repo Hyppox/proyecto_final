@@ -2,6 +2,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.preprocessing import LabelEncoder
+import scipy.stats as stats
+
 
 
 file = open("registro_de_ejercicios.txt")
