@@ -25,4 +25,6 @@ sqlite3
 
 ___________________
 No todos los archivos .py están siendo usados
+
+
 Sensores.py contiene la aplicación en 3D
